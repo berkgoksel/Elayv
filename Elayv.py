@@ -85,7 +85,7 @@ def run():
 
     verification = re.search(r'^(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})/[0-9]+$', ip_input)
     while ( verification == None):
-        ip_input = raw_input( "Please Enter correct formatt:")
+        ip_input = raw_input( "Please enter an IP adress using correct format (ex:192.168.0.0/16: ")
         verification = re.search(r'^(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})/[0-9]+$', ip_input)
 
     ip_range = IPNetwork(ip_input)
