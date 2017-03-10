@@ -94,12 +94,12 @@ def run():
     iplist = list(ip_range)
 
     valid_ips = list()
-    present = False
     addrUp = 0
     scanned = 1
 
 
     for addr in iplist:
+        present = False
         present = scan(addr)
         printProgress( scanned, len(iplist))
         if present == True:
