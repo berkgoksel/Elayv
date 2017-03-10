@@ -16,9 +16,10 @@ from sys import stdout
 
 
 def scan(addr):
-
+ 
+ boolean = False
+ 
  try:
-   boolean = False
    user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
    headers = {'User-Agent': user_agent}
    url = "http://" + str(addr)
@@ -62,6 +63,7 @@ def search(html, words):
 
  except Exception as e:
     sys.exc_clear()
+    return boolean
 
 
 
@@ -99,7 +101,6 @@ def run():
 
 
     for addr in iplist:
-        present = False
         present = scan(addr)
         printProgress( scanned, len(iplist))
         if present == True:
