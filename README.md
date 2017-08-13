@@ -6,11 +6,11 @@ and checks if the IP adresses belong to the same person/company.
 
 #Whats new with Elayv V2.1?
 
--Added threads (-t).
--Added support for generating greppable output.
--Elayv now takes arguments (-m, -w, -l, -r, -i , -t, -o -h).
--Migrated to python3.
--Elayv html search is now more reliable.
+- Added threads (-t).
+- Added support for generating greppable output.
+- Elayv now takes arguments (-m, -w, -l, -r, -i , -t, -o -h).
+- Migrated to python3.
+- Elayv html search is now more reliable.
 
 
 #Whats New with Elayv_V2.0?
