@@ -8,8 +8,8 @@ from threading import Thread
 from urllib.error import URLError, HTTPError
 
 
-###############Elayv_V2.0######################
-#Author: Berk Cem Goksel and Usama Saqib
+###############Elayv_V2.1######################
+#Authors: Berk Cem Göksel and Usama Saqib
 #Initially made by Alper Basaran
 ###############################################
 
@@ -191,9 +191,9 @@ def message():
 	print( " ")
 	print( " *****************************************************")
 	print( " *****************************************************")
-	print( " ***         ELAYV    V2.0 ***************************")
+	print( " ***         ELAYV    V2.1 ***************************")
 	print( " *****************************************************")
-	print( " *************************OSINT Web Page Scanner******")
+	print( " *************************OSINT Web Page Finder*******")
 	print( " *****************************************************")
 	print( " ")
 	print( "Searches for the IP adresses that respond to port 80 in the specified ")
@@ -273,13 +273,14 @@ def help_function():
 	print( "-r IP range in the form: 192.168.1.35-60")
 	print( "-w list of words seperated by space. -w word1 word2")
 	print( "-t limit the number of threads. -t 50")
+	print( "-i specify an input file to read from") 
 	print( "-o output file. -o results.txt")
 	
 	print( "\n")
 	print( "EXAMPLES:")
 	print( "python3 Elayv_threads.py -m 192.168.1.0/24 -w microsoft google -t 50")
-	print( "python3 Elayv_threads.py -l 10.0.0.1 192.168.1.14 127.0.0.1 8.8.8.8 -w Computer Bilgisiyar Tech")
-	print( "python3 Elayv_threads.py -r 192.168.1.5-35 -w rap rock pop jazz -o music.txt")
+	print( "python3 Elayv_threads.py -l 10.0.0.1 192.168.1.14 127.0.0.1 8.8.8.8 -w Computer Company-Name Tech")
+	print( "python3 Elayv_threads.py -r 192.168.1.5-35 -w rap rock pop jazz -o output.txt")
 	
 if __name__ == "__main__":
 	if (sys.argv[1] == '-h'):
