@@ -93,11 +93,16 @@ def ipAddresses():
 				ip_list.append(str(x))
 			
 	elif (sys.argv[1] == '-l'):
-		for x in range(2 , len(sys.argv)):
-			if (sys.argv[x] == '-t'):
-				break
-			else:
-				ip_list.append(sys.argv[x])
+		filename = sys.argv[2]
+		with open(filename, 'r') as file:
+			for line in file:
+				ip_list.append( line[0:len(line)-1 ])
+
+		#for x in range(2 , len(sys.argv)):
+		#	if (sys.argv[x] == '-t'):
+		#		break
+		#	else:
+		#		ip_list.append(sys.argv[x])
 			
 	elif (sys.argv[1] == '-r'):
 		if (validIpRange ( sys.argv[2])):
@@ -116,6 +121,7 @@ def ipAddresses():
 		print("Invalid arguments!")
 		sys.exit(1);
 		
+	print (ip_list)
 	return ip_list
 	
 def wordList():
@@ -269,7 +275,7 @@ def help_function():
 	print( "\n")
 	print( "USAGE:")
 	print( "NOTE: IP ADDRESS MUST BE GIVEN FIRST. AFTER THAT THE ORDER OF ARGUMENTS DO NOT MATTER")
-	print( "-l list of IP adresses written with space in between: 192.168.1.35 10.0.0.0 8.8.8.8 127.0.0.1")
+	print( "-l list of IP adresses passed in as a file")
 	print( "-m subnet mask in the form: 192.169.1.0/24")
 	print( "-r IP range in the form: 192.168.1.35-60")
 	print( "-w list of words seperated by space. -w word1 word2")
