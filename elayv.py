@@ -111,8 +111,6 @@ def ipAddresses():
 		with open(sys.argv[2], 'r') as file:
                     f = file.read().split('\n')
                     ip_list = list(filter(None, f))
-                    print(ip_list)
-                    exit()
 
 
 	elif (sys.argv[1] == '-W'):
