@@ -9,7 +9,6 @@ import netaddr
 from threading import Thread
 from urllib.error import URLError, HTTPError
 
-
 ###############Elayv_V2.1######################
 #Authors: Berk Cem Göksel and Usama Saqib
 #Initially made by Alper Basaran
@@ -18,7 +17,7 @@ from urllib.error import URLError, HTTPError
 timeout = 8.0
 results = {}
 
-ip = r'^(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})$'
+ip = r'(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})'
 ip_range = r'^(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})-(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})$'
 ip_mask = r'^(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{0,2}|2[0-4][0-9]|[01]?[0-9]{0,2})\.(2[0-5]{2}|2[0-4][0-9]|[01]?[0-9]{0,2})/[0-9]{1,2}$'
 
@@ -26,6 +25,7 @@ prog_ip_range = re.compile(ip_range)
 prog_mask = re.compile(ip_mask)
 prog_ip = re.compile(ip)
 
+googlebot_user_agent = 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
 #pass word_list to scan
 
 def scan(addr, word_list):
@@ -109,30 +109,33 @@ def ipAddresses():
 
 	elif (sys.argv[1] == '-i'):
 		with open(sys.argv[2], 'r') as file:
-			f = file.read().split('\n')
-			ip_list = f[:-1]
+                    f = file.read().split('\n')
+                    ip_list = list(filter(None, f))
+                    print(ip_list)
+                    exit()
 
 
 	elif (sys.argv[1] == '-W'):
 		with open(sys.argv[2], 'r') as file:
                         #f = file.read().split('\n')
-				for line in file:
-					if re.search("inetnum", line):
-						startip = line.split("-")[1]
-						endip = line.split("-")[2]
-						print(startip + "\r\n")
-						print(endip + "\r\n")
-						cidrs = netaddr.iprange_to_cidrs(startip, endip)
-						print(cidrs)
-				else:
-						print("Unable to locate Inetnum")
+                        #file.read().split('inetnum')
+			for line in file:
+                            if "inetnum" in line:
+                                ips = prog_ip.findall(line)
+                                startip = ips[0]
+                                startip = startip[0] + '.' + startip[1] + '.' + startip[2] + '.' + startip[3]
+                                endip = ips[1]
+                                endip = endip[0] + '.' + endip[1] + '.' + endip[2] + '.' + endip[3]
+                                cidrs = netaddr.iprange_to_cidrs(startip, endip)
+                                net2 = ipaddress.ip_network(cidrs[0])
+                                for x in net2.hosts():
+                                    ip_list.append(str(x))
 
 
 	else:
 		print("Invalid arguments!")
 		sys.exit(1);
 
-	print (ip_list)
 	return ip_list
 
 def wordList():
