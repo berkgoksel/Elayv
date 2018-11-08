@@ -14,6 +14,11 @@ from urllib.error import URLError, HTTPError
 #Initially made by Alper Basaran
 ###############################################
 
+#########Installation of requirements##########
+# apt-get install python3-pip
+# pip3 install netaddr
+###############################################
+
 timeout = 8.0
 results = {}
 
