@@ -9,15 +9,9 @@ import netaddr
 from threading import Thread
 from urllib.error import URLError, HTTPError
 
-###############Elayv_V2.1######################
 #Authors: Berk Cem Göksel and Usama Saqib
-#Initially made by Alper Basaran
-###############################################
+#Kudos for the name and idea: https://github.com/alperbasaran/elayv/commits/master/elayv.py
 
-#########Installation of requirements##########
-# apt-get install python3-pip
-# pip3 install netaddr
-###############################################
 
 timeout = 8.0
 results = {}
