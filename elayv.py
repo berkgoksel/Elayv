@@ -39,7 +39,9 @@ def scan(addr, word_list):
 
         with urllib.request.urlopen(req) as response:
             rcode = response.code
-            source = str(response.read())
+            source = response.read()
+            source = source.decode('utf-8')
+            print(source)
 
     except HTTPError as e:
         rcode = e.code
@@ -68,7 +70,7 @@ def searchForWords(words, source, url):
     for word in words:
         match = re.search(word, source, re.IGNORECASE)
         if (match != None):
-            # print( url, ": ", word, " found.") #Uncomment to see which words matched.
+            print( url, ": ", word, " found.") #Uncomment to see which words matched.
             return True
 
     return False
@@ -146,7 +148,13 @@ def wordList():
 
     if start > 0:
         for x in range(start, len(sys.argv)):
-            word_list.append(sys.argv[x])
+            if sys.argv[x] == '-t':
+                break
+            else:
+                word_list.append(sys.argv[x])
+
+
+
 
     return word_list
 
