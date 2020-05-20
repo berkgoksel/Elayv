@@ -39,7 +39,8 @@ def scan(addr, word_list):
 
         with urllib.request.urlopen(req) as response:
             rcode = response.code
-            source = str(response.read())
+            source = response.read()
+            source = source.decode("utf-8")
 
     except HTTPError as e:
         rcode = e.code
